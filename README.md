@@ -35,7 +35,7 @@ v2.0    2019/06/22
 ##### 查看采集的数据
 - 查看你的mysql中会生成一张 kuyunzy2 的表，可以看到里面采集好的数据
 
-![Alt text](./output/img/data.png)
+![Alt text](./output/img/client.png)
 
 - 查看client端
 ![Alt text](./output/img/client.gif)
