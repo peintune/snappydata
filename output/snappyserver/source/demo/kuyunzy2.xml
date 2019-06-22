@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurations>
+    <!-- 爬虫休眠时间是指此轮爬取结束到下次爬取开始的时间差，单位是秒 -->
+    <sleeptime value="3600"/>
+    <pageRules>
+        <rule value="http://www.kuyunzy.cc/list/?0-1.html"/>
+        <rule value="http://www.kuyunzy.cc/list/?0-2.html"/>
+        <initialMaxpage value="http://www.kuyunzy.cc/list/?0-73.html"/>
+        <!--initialMaxpage value="http://shanghai.anjuke.com/sale/o5-p50/#filtersort/"/-->
+        <!--如果maxpage 为空，那么在初始化的时候一直爬取直到没有可以爬取的内容为止-->
+        <crawlingRange from="http://www.kuyunzy.cc/list/?0-1.html" to="http://www.kuyunzy.cc/list/?0-3.html"/>
+        <ignoreURLParams param1="noparames"/>
+        <invalidUrl content1="如果出现这个，表示页面不可用"/>
+        <autoproxy enable="false" identifycod1="请输入图片中的验证码"/>
+        <requestsucessflag content1="资源"/>
+    </pageRules>
+    <contentUrlList appendbefore1="http://www.kuyunzy.cc" xpath1="//*[@class='row']//a" attr1="href">
+        <column name="name" dbtype="varchar(150)" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[1]/td/font/text()"/>
+        <column name="beizhu" dbtype="varchar(550)" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[2]/td/font/text()"/>
+        <column name="daoyan" dbtype="text" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[4]/td/font/a/text()"/>
+        <column name="yanyuan" dbtype="text" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[3]/td/font/text()"/>
+        <column name="leixing" dbtype="varchar(550)" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[5]/td/font/text()"/>
+        <column name="diqu" dbtype="varchar(550)" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[6]/td/font/text()"/>
+        <column name="gengxingshijian" dbtype="varchar(550)" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[7]/td/font/text()"/>
+        <column name="zhuangtai" dbtype="varchar(550)" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[8]/td/font/text()"/>
+        <column name="yuyan" dbtype="varchar(550)" xpath1="//html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[9]/td/font/text()"/>
+        <column name="shangyinriqi" dbtype="varchar(550)" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[10]/td/font/text()"/>
+        <column name="jiesao" dbtype="text" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[11]/td/div/font//text()"/>
+        <column name="tupian" dbtype="varchar(550)" xpath1="/html/body/table[2]/tbody/tr[1]/td[1]/div/img" attr1="src"/>
+        <column name="playlink1" dbtype="text" xpath1="/html/body/table[2]/tbody/tr[2]/td/table/tbody//td//a/text()"/>
+        <column name="playlink2" dbtype="text" xpath1="/html/body/table[2]/tbody/tr[3]/td/table/tbody//td//a/text()"/>
+    </contentUrlList>
+</configurations>

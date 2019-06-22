@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: snappyserver
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+  main:
+    web-application-type: none
+server:
+  context-path: /snappyserver
+  port: 9028
+  tomcat:
+    uri-encoding: UTF-8
+

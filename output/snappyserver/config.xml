@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurations>
+	<debuglog value="true"/>
+
+	<!-- 并发爬虫数 -->
+	<snappier>
+		<parallelexecutornumber value="3"/>
+	</snappier>
+
+	<!--代理池，目前废弃不用 -->
+	<proxyiphost value="http://localhost:8080"/>
+	<proxy>
+		<proxyhost value=""/>
+		<proxyport value="8080"/>
+	</proxy>
+
+	<!-- mysql连接地址， 如果Mysql部署在云端，需要提供公网ip或者域名，并开放相关端口访问 -->
+	<mysql>
+		<hostname value="t7cuy9yb.2264.dnstoo.com"/>
+		<portnumber value="5506"/>
+		<dbname value="jpmovie"/>
+		<username value="jpmovie_f"/>
+		<password value="qazwsx123"/>
+	</mysql>
+
+</configurations>	

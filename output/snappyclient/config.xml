@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurations>
+	<debuglog value="true"/>
+	<!-- hostname是snappyserver部署的机器ip或者域名地址, snappyclient 如果和snappyserver是在同一局域网，则直接设置为内网ip如，
+	 如果snappyserver在云端，那么snappyserver的服务器要提供公网ip或者域名，并开放8080端口
+	 -->
+	<hostname value="http://localhost:8080"/>
+	<!-- contentparsernumber 表示并发爬虫数 -->
+	<contentparsernumber value="3"/>
+
+	<!--代理池，目前废弃不用 -->
+	<autoproxyip value="false" />
+	<proxyiphost value="http://localhost:8080"/>
+	<proxy>
+		<proxyhost value=""/>
+		<proxyport value="8080"/>
+	</proxy>
+
+
+</configurations>	
