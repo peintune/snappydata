@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurations>
+	<!-- 爬虫休眠时间是指此轮爬取结束到下次爬取开始的时间差，单位是秒 -->
+	<sleeptime value="18000"/>
+	<pageRules>
+		<rule value="http://bj.fang.anjuke.com/loupan/all/p1_s6/"/>
+		<rule value="http://bj.fang.anjuke.com/loupan/all/p2_s6/"/>
+		<initialMaxpage value="http://bj.fang.anjuke.com/loupan/all/p100_s6/"/>
+		<!--initialMaxpage value="http://shanghai.anjuke.com/sale/o5-p50/#filtersort/"/-->
+		<!--如果maxpage 为空，那么在初始化的时候一直爬取直到没有可以爬取的内容为止-->
+		<crawlingRange from="http://bj.fang.anjuke.com/loupan/all/p1_s6/" to="http://bj.fang.anjuke.com/loupan/all/p1_s6/"/>
+		<ignoreURLParams param1="equid" param2="position" param3="now_time"/>
+		<invalidUrl content1="对不起，您要浏览的网页可能被删除，重命名或者暂时不可用" content2="not exist"/>
+	</pageRules>
+	<contentUrlList xpath1="//*[@id=&quot;container&quot;]//div[@class=&quot;key-list&quot;]/div[@class=&quot;item-mod&quot; and @data-link]" attr1="data-link">
+		<column name="城市" dbtype="varchar(5)" value="北京"/>
+		<column name="楼盘名" dbtype="varchar(60)" xpath1="//*[@id=&quot;j-triggerlayer&quot;]/text()"/>
+		<column name="状态" dbtype="varchar(30)" xpath1="//*[@id=&quot;header&quot;]/div[3]/div/div[2]/i/text()"/>
+		<column name="标签" dbtype="varchar(100)" xpath1="//*[@id=&quot;header&quot;]/div[3]/div/div[3]/div[1]/span/text()"/>
+		<column name="优惠" dbtype="varchar(40)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[1]/dl/dd[2]/span/text()" xpath2="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[1]/dl/dd[2]/text()"/>
+		<column name="价格" dbtype="varchar(30)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[1]/dl/dd[1]/p/em/text()" xpath2="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[2]/dl/dd[1]/p/em/text()"/>
+		<column name="价格单位" dbtype="varchar(30)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[1]/dl/dd[1]/p/text()" xpath2="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[2]/dl/dd[1]/p/text()"/>
+		<column name="户型" dbtype="varchar(60)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[1]/dl/dd[3]/div/a/text()"/>
+		<column name="地址" dbtype="varchar(100)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[1]/dl/dd[4]/span/text()" xpath2="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[2]/dl/dd[3]/span/text()" xpath3="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[2]/dl/dd[4]/span/text()" xpath4="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[1]/dl/dd[3]/span/text()"/>
+		<column name="年限" dbtype="varchar(20)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[4]/ul[1]/li[3]/span/text()"/>
+		<!-- 页面中有二级页面需要爬取，可以用url标签 -->
+		<url xpath1="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[4]/a" attr1="href">
+			<column name="开发商" dbtype="varchar(30)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[1]/div[2]/ul/li[5]/div[2]/a/text()"/>
+			<column name="售楼电话" dbtype="varchar(40)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[1]/div[2]/ul/li[8]/div[2]/span[1]/text()+//*[@id=&quot;container&quot;]/div[1]/div[1]/div[1]/div[2]/ul/li[8]/div[2]/span[2]/text()+//*[@id=&quot;phone_numuber_info&quot;]/text()"/>
+			<column name="区域位置" dbtype="varchar(250)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[1]/div[2]/ul/li[6]/div[2]/text()+//*[@id=&quot;container&quot;]/div[1]/div[1]/div[1]/div[2]/ul/li[6]/div[2]/a/text()" xpath3="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[1]/div[2]/ul/li[6]/div[2]/a/text()[1]+//*[@id=&quot;container&quot;]/div[1]/div[1]/div[1]/div[2]/ul/li[6]/div[2]/a[1]/text()+//*[@id=&quot;container&quot;]/div[1]/div[1]/div[1]/div[2]/ul/li[6]/div[2]/a/text()[2]+//*[@id=&quot;container&quot;]/div[1]/div[1]/div[1]/div[2]/ul/li[6]/div[2]/a[2]/text()"/>
+			<column name="最低首付" dbtype="varchar(100)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[2]/div[2]/ul/li[1]/div[2]/text()" xpath2="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[2]/div[2]/ul/li[1]/div[2]/a/text()"/>
+			<column name="售楼地址" dbtype="varchar(100)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[1]/div[2]/ul/li[7]/div[2]/text()" xpath2="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[2]/div[2]/ul/li[5]/div[2]/text()" xpath3="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[2]/div[2]/ul/li[5]/div[2]/text()"/>
+			<column name="容积率" dbtype="varchar(100)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[3]/div[2]/ul/li[4]/div[2]/text()"/>
+			<column name="绿化率" dbtype="varchar(100)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[3]/div[2]/ul/li[5]/div[2]/text()"/>
+			<column name="规划住户数目" dbtype="varchar(1000)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[3]/div[2]/ul/li[6]/div[2]/text()"/>
+			<column name="物业费用" dbtype="varchar(100)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[3]/div[2]/ul/li[7]/div[2]/text()"/>
+			<column name="物业公司" dbtype="varchar(100)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[3]/div[2]/ul/li[8]/div[2]/a/text()"/>
+			<column name="车位数" dbtype="varchar(100)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[3]/div[2]/ul/li[9]/div[2]/text()"/>
+			<column name="公交路线" dbtype="varchar(1000)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[4]/div[2]/ul/li[1]/div[2]/text()"/>
+			<column name="高架" dbtype="varchar(800)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[1]/div[4]/div[2]/ul/li[2]/div[2]/text()"/>
+		</url>
+		<column name="开盘时间" dbtype="varchar(30)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[4]/ul[1]/li[1]/span/text()" xpath2="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[5]/ul[2]/li[1]/span/text()"/>
+		<column name="交房时间" dbtype="varchar(30)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[4]/ul[2]/li[1]/span/text()"/>
+		<column name="装修" dbtype="varchar(30)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[4]/ul[1]/li[2]/span/text()"/>
+		<column name="建筑类型" dbtype="varchar(20)" xpath1="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[4]/ul[2]/li[2]/span/text()"/>
+		<url xpath1="//*[@id=&quot;container&quot;]/div[1]/div[2]/div[4]/ul[2]/li[3]/a" attr1="href">
+			<column name="用户点评" dbtype="text" xpath1="//*[@id=&quot;j-total-wrap&quot;]/ul/li">
+				<partial name="用户名" xpath1="//*[@id=&quot;j-total-wrap&quot;]/ul/li[28]/div[1]/div[2]/div[1]/a/span/text()"/>
+				<partial name="评论" xpath1="//*[@id=&quot;j-total-wrap&quot;]/ul/li[28]/div[1]/div[2]/h4[1]/text()"/>
+				<partial name="时间" xpath1="//*[@id=&quot;j-total-wrap&quot;]/ul/li[28]/div[1]/div[2]/div[2]/span/text()"/>
+			</column>
+			<!--会将内容拼成一个json数组对象-->
+		</url>
+	</contentUrlList>
+</configurations>

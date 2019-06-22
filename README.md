@@ -1,10 +1,10 @@
 
-作者 何坤<3163172384@qq.com>， 个人博客：http://blog.tomiyo.cn, 兔密友搜索引擎：http://tomiyo.cn
+- 作者 何坤<3163172384@qq.com>， 个人博客：http://blog.tomiyo.cn, 兔密友搜索引擎：http://tomiyo.cn
+- 工具仅供交流学习，不能用于商业用途
 
 ## 版本更新
 v2.0    2019/06/22 
 - 服务端改造成springboot
-
 
 ## snappy爬虫能做什么
 
@@ -45,3 +45,13 @@ v2.0    2019/06/22
 
 ## 项目结构
 ![Alt text](./output/img/project.png)
+
+
+## 如何新添加一个任务，如爬取anjuke 
+- 在output/source创建任务文件夹如 anjuke
+- 复制 output/source/demo目录下的kuyunzy2.xml 文件到anjuke目录下，改名为anjuke.xml
+- 修改anjuke.xml里面的内容， 里面只要带‘修改‘ 字样的项都要安装你要爬取的页面相关的修改
+- 在浏览器中输如 http://localhost:8080/message/addSnappier?folder=anjuke&filerex=anjuke 并回车 （添加一个任务）
+- 在浏览器中输入 http://localhost:8080/message/startSnappier?folder=anjuke&filerex=anjuke  并回车 （执行一个任务）
+- 查看server端和client的日志是否报错，如有，根据相关错误调试anjuke.xml中的内容
+- 查看mysql中的数据是否完整，如不完整，检查xml中的column 中的xpath值是否正确

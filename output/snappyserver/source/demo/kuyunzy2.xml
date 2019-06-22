@@ -3,18 +3,34 @@
     <!-- 爬虫休眠时间是指此轮爬取结束到下次爬取开始的时间差，单位是秒 -->
     <sleeptime value="3600"/>
     <pageRules>
+        <!-- 修改翻页地址1 -->
         <rule value="http://www.kuyunzy.cc/list/?0-1.html"/>
+        <!-- 修改翻页地址2 -->
         <rule value="http://www.kuyunzy.cc/list/?0-2.html"/>
+        <!-- 修改最大翻页地址 ，如果maxpage 为空，那么在初始化的时候一直爬取直到没有可以爬取的内容为止，建议还是设置最大页数-->
         <initialMaxpage value="http://www.kuyunzy.cc/list/?0-73.html"/>
-        <!--initialMaxpage value="http://shanghai.anjuke.com/sale/o5-p50/#filtersort/"/-->
-        <!--如果maxpage 为空，那么在初始化的时候一直爬取直到没有可以爬取的内容为止-->
+
+        <!-- 修改，每一轮循环爬取的页面返回，本案例是 每次3600秒爬取 第一页到第三页 -->
         <crawlingRange from="http://www.kuyunzy.cc/list/?0-1.html" to="http://www.kuyunzy.cc/list/?0-3.html"/>
+
+        <!-- 有些页面的链接中有些参数没有作用或者每次动态会变化，可以用该变量进行忽略 -->
         <ignoreURLParams param1="noparames"/>
+
+        <!-- 有些页面会失效，修改下面的内容来判断页面失效-->
         <invalidUrl content1="如果出现这个，表示页面不可用"/>
+
+        <!-- 代理和验证码，当前版本不支持-->
         <autoproxy enable="false" identifycod1="请输入图片中的验证码"/>
+
+        <!-- 修改下面的参数来判断页面加载成功，如百度首页肯定有‘百度’二字 -->
         <requestsucessflag content1="资源"/>
     </pageRules>
+
+    <!-- 修改内容页获取的方法 (xpath值)，修改xpath1, 如果有多种，可以加xpath2,xpath3 ... -->
     <contentUrlList appendbefore1="http://www.kuyunzy.cc" xpath1="//*[@class='row']//a" attr1="href">
+
+        <!-- 修改内容页里要爬取的内容项, 如果有多种，可以加xpath2,xpath3 ... -->
+        <!-- 如果内容页中有二级页面需要爬取，可以用url标签，可以参考 demo/anjuke/anjuke_xf_beijing.xml中的写法-->
         <column name="name" dbtype="varchar(150)" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[1]/td/font/text()"/>
         <column name="beizhu" dbtype="varchar(550)" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[2]/td/font/text()"/>
         <column name="daoyan" dbtype="text" xpath1="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr[4]/td/font/a/text()"/>
